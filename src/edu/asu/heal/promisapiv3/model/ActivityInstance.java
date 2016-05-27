@@ -1,9 +1,25 @@
 package edu.asu.heal.promisapiv3.model;
 
-public class ActivityInstance {
+/**
+ * The ActivityInstance model object represents 
+ * @author kevinagary
+ *
+ */
+public final class ActivityInstance {
 
-	public ActivityInstance() {
-		// TODO Auto-generated constructor stub
+	private final String activityInstanceId;
+	
+	public ActivityInstance(String aid) throws Exception {
+		// Initialize existing one from DAO
+		activityInstanceId = aid;
+		// XXX Get it from the DAO
+	}
+	
+	/**
+	 * Factory method. This creates the instance and persists it through the DAO
+	 */
+	public static ActivityInstance createActivityInstance(Activity a, Patient p /*, Clinician c*/) throws Exception {
+		return null;
 	}
 
 }

@@ -1,5 +1,6 @@
 package edu.asu.heal.promisapiv3.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,9 +19,26 @@ public class ContainerActivity extends Activity {
 	private List<Activity> __subActivities;
 	private ContainerActivity.Sequencing __sequencing;
 	
-	public ContainerActivity() {
-		// TODO Auto-generated constructor stub
+	// YYY need our own Exception type here
+	private void __init(List<Activity> activities, Sequencing s) throws Exception {
+		if (activities == null || activities.size() < 2) throw new Exception("Container activities must have at least 2 children");
+		// we intentionally do not deep clone
+		__subActivities = activities;
+		__sequencing = s;
+		// We assume this is being populated from a persistent store via a DAO somehow
+	}
+	
+	public ContainerActivity(Activity child1, Activity child2, ContainerActivity.Sequencing seq) throws Exception {
 		super();
+		List<Activity> tempList = new ArrayList<Activity>();
+		tempList.add(child1);
+		tempList.add(child2);
+		__init(tempList, seq);
+	}
+	
+	public ContainerActivity(List<Activity> children, ContainerActivity.Sequencing seq) throws Exception {
+		super();
+		__init(children, seq);
 	}
 	
 	// factory method, we'll get back to this
